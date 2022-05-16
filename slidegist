@@ -1,13 +1,20 @@
+# DEVELOPMENT SET UP
+
 # Install/Setup MicroK8s
 $ sudo snap install --classic microk8s
+
 # This avoid needing to use 'sudo' with the 'microk8s' command
 $ sudo usermod -aG microk8s $(whoami)
+
 # Wait for MicroK8s to be ready
 $ sudo microk8s status --wait-ready
+
 # Enable features required by Juju controller & charm
 $ sudo microk8s enable storage dns ingress
+
 # (Optional) Alias kubectl bundled with MicroK8s package
 $ sudo snap alias microk8s.kubectl kubectl
+
 # Activate the new group (in the current shell only)
 # Log out and log back in to make the change system-wide
 $ newgrp microk8s
@@ -20,8 +27,34 @@ $ sudo snap install juju --classic
 
 # Bootstrap MicroK8s
 $ juju bootstrap microk8s uk8s
+
 # Add a new model to Juju
 $ juju add-model development
+
 #watching the progress of the deployment of model, ctrl + c to exit
 watch -n1 -c juju status --color
+
+# REDIS CHARM DEPLOYMENT 
+
+# Build and Deploy Redis available Charmhub - https://charmhub.io/redis-k8s
+$ juju deploy redis-k8s --channel edge
+
+# Check juju status and get the IP
+$ juju status
+
+
+# Check juju connection with redis server
+$ redis-cli -h 10.1.87.202 PING
+# Successful connection
+PONG 
+
+
+# REDIS DB UPDATE
+
+# Update redis database
+$ redis-cli -h 10.1.87.202 SET "MYKEY" "1234"
+
+# See redis database
+$ redis-cli -h 10.1.87.202 GET "MYKEY" "
+
 
