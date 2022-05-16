@@ -55,6 +55,9 @@ PONG
 $ redis-cli -h 10.1.87.202 SET "MYKEY" "1234"
 
 # See redis database
-$ redis-cli -h 10.1.87.202 GET "MYKEY" "
+$ redis-cli -h 10.1.87.202 GET "MYKEY" 
+
+# SEE MICROK8S AND KUBERNETES SETTING
+$  kubectl describe pod -n development redis-k8s-0
 
 
