@@ -1,1 +1,27 @@
+# Install/Setup MicroK8s
+$ sudo snap install --classic microk8s
+# This avoid needing to use 'sudo' with the 'microk8s' command
+$ sudo usermod -aG microk8s $(whoami)
+# Wait for MicroK8s to be ready
+$ sudo microk8s status --wait-ready
+# Enable features required by Juju controller & charm
+$ sudo microk8s enable storage dns ingress
+# (Optional) Alias kubectl bundled with MicroK8s package
+$ sudo snap alias microk8s.kubectl kubectl
+# Activate the new group (in the current shell only)
+# Log out and log back in to make the change system-wide
+$ newgrp microk8s
+
+# Install Charmcraft for packing and deploy in Charmhub
+$ sudo snap install charmcraft --classic
+
+# Install Juju
+$ sudo snap install juju --classic
+
+# Bootstrap MicroK8s
+$ juju bootstrap microk8s uk8s
+# Add a new model to Juju
+$ juju add-model development
+#watching the progress of the deployment of model, ctrl + c to exit
+watch -n1 -c juju status --color
 
