@@ -1,6 +1,6 @@
 World Data Summit 2022
 
-World data summit presentation - 'Open Source Data Solutions on any cloud'
+World data summit presentation - 'Open source data solutions on any cloud'
 
 Access the CLI 
 
